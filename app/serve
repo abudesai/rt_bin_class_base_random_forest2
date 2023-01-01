@@ -57,12 +57,10 @@ async def infer(input_: dict) -> dict:
     In this sample server, we take data as JSON, convert
     it to a pandas data frame for internal use and then convert the predictions back to JSON .
     """
-    print(input_)
     try:
         # Do the prediction
         data = pd.DataFrame.from_records(input_["instances"])
         print(f"Invoked with {data.shape[0]} records")
-        print(data)
         predictions = model_server.predict_to_json(data)
         return {
             "success": True,
